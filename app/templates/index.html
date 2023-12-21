@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Judul Halaman -->
+	<title>Halaman Utama - Aplikasi Klasifikasi Calon Kandidat Outsourcing TOG Indonesia</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/bootstrap.min.css' ) }} type="text/css">
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/client_side.css' ) }} type="text/css">
+
+	<!-- JavaScript -->
+	<script src={{ url_for('static', filename='/js/jquery_3.6.0.min.js' ) }}></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src={{ url_for('static', filename='/js/bootstrap_3.4.1.min.js' ) }}></script>
+</head>
+
+<body id="halamanku" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Logo -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">
+					<img src="{{ url_for('static', filename='/images/Logo-TOG-Indonesia.png') }}" alt="TOG Indonesia Logo" class="logo-img">
+				</a>
+			</div>
+
+			<!-- Daftar Halaman -->
+			<div class="nav navbar-nav navbar-right">
+				<li><a href="{{ url_for('beranda') }}">INFORMASI</a></li>
+				<li><a href="{{ url_for('apiDeteksi') }}">APLIKASI</a></li>
+				<li><a href="{{ url_for('view_tabel') }}">RECORD KANDIDAT</a></li>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Bagian Halaman (Informasi) -->
+	<div id="informasi" class="container-fluid">
+		<br>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				<!-- Deskripsi Aplikasi -->
+				<h2>Klasifikasi Calon Kandidat Outsourcing TOG Indonesia</h2>
+				<p style="text-align: justify;text-justify: inter-word; ; font-size: 20px;">
+					Aplikasi ini dibuat untuk klasifikasi calon kandidat outsourcing dari TOG Indonesia. Aplikasi ini digunakan untuk
+					melakukan klasifikasi kandidat yang <i> Recommended </i> ataupun <i> Not Recommended </i> untuk dipromosikan oleh TOG Indonesia 
+					ke Perusahaan yang membutuhkan Tenaga Kerja
+				</p>
+				<br>
+
+				<!-- Tombol Mulai -->
+				<nav id="navgo" class="navbar" style="background-color:#ffffff;z-index: 0;">
+					<ul class="nav nav-pills">
+						<li class="nav-item">
+							<a class="btn btn-default btn-lg" href="/api/deteksi"
+								style="background-color:#28ace5">Mulai</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+			<div class="col-sm-6 text-center">
+				<!-- Gambar Deskripsi Aplikasi -->
+				<br>
+				<img src="{{ url_for('static', filename='/images/Logo-TOG-Indonesia.png' ) }}" width="400" alt="Logo TOG Indonesia">
+			</div>			
+		</div>
+		<br>
+	</div>
+	<!-- Footer -->
+	<footer class="container-fluid text-center">
+		<!-- Button to scroll to top -->
+		<button id="scrollToTopBtn" class="btn btn-default" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+		</button>
+		<p> Copyright : Ahmad Ardhy Ansyah <br></p>
+	</footer>
+
+	<!-- JavaScript untuk Animasi Scroll dan Prediksi Model -->
+	<script src={{ url_for('static', filename='/js/client_side.js' ) }}></script>
+	<!-- JavaScript for scrolling to top -->
+	<script>
+    // Wait for the document to be ready
+    $(document).ready(function () {
+        // Attach click event handler to the button
+        $("#scrollToTopBtn").click(function () {
+            // Scroll to the top of the page
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+        });
+    });
+	</script>
+</body>
+
+</html>

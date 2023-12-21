@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Judul Halaman -->
+	<title>Halaman Prediksi - Aplikasi Klasifikasi Calon Kandidat Outsourcing TOGI</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/bootstrap.min.css' ) }} type="text/css">
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/client_side.css' ) }} type="text/css">
+
+	<!-- JavaScript -->
+	<script src={{ url_for('static', filename='/js/jquery_3.6.0.min.js' ) }}></script>
+	<script src={{ url_for('static', filename='/js/bootstrap_3.4.1.min.js' ) }}></script>
+</head>
+
+<body id="halamanku" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Logo -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">
+					<img src="{{ url_for('static', filename='/images/Logo-TOG-Indonesia.png') }}" alt="TOG Indonesia Logo" class="logo-img">
+				</a>
+			</div>
+
+			<!-- Daftar Halaman -->
+			<div class="nav navbar-nav navbar-right">
+				<li><a href="{{ url_for('beranda') }}">INFORMASI</a></li>
+				<li><a href="{{ url_for('apiDeteksi') }}">APLIKASI</a></li>
+				<li><a href="{{ url_for('view_tabel') }}">RECORD KANDIDAT</a></li>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Bagian Halaman (Aplikasi) -->
+	<div id="aplikasi" data-bs-spy="scroll" data-bs-target="#navgo" data-bs-offset="0" class="scrollspy-example"
+		tabindex="0">
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				</br>
+				<!-- Input Nilai Pengukuran dari Pengguna -->
+				<h2 style="margin-left: 50px;">Prediksi Calon Kandidat Outsourcing TOG Indonesia</h2>
+				<form id="prediksiForm">
+					<div class="form-group" style="margin-left: 50px;">
+						<div class="input">
+							<label for="input_Nama">Masukkan Nama</label>
+							<input class="kotak-input" type="text" required id="input_Nama" />
+						</div>
+						<div class="input">
+							<label for="input_Posisi_Harapan">Masukkan Posisi Harapan</label>
+							<input class="kotak-input" type="text" required id="input_Posisi_Harapan" />
+						</div>
+						<div class="input">
+							<label for="range_Usia">Masukkan Usia Calon Kandidat</label>
+							<input class="kotak-input" type="number" required id="range_Usia"
+							onInput="$('#rangeVal_Usia').html($(this).val())"/>
+						</div>
+						<div class="input">
+							<label for="range_Pendidikan">Pilih Kategori Pendidikan Calon Kandidat </label>
+							<select class="kotak-input" id="range_Pendidikan" required>
+								<option value="1">Lebih dari atau Sama dengan S1 / D4</option>
+								<option value="0">Kurang dari S1 / D4</option>
+							</select>
+						</div>
+						<div class="input">
+							<label for="range_Lama_Pengalaman">Pilih Kategori Lama Pengalaman Calon Kandidat</label>
+							<select class="kotak-input" id="range_Lama_Pengalaman" required>
+								<option value="1">Lebih dari Setahun</option>
+								<option value="0">Kurang dari Setahun</option>
+							</select>
+						</div>
+						<div class="input">
+							<label for="range_Kesesuaian_Posisi_Skill">Pilih Kategori Kesesuaian Posisi Harapan dengan Skills</label>
+							<select class="kotak-input" id="range_Kesesuaian_Posisi_Skill" required>
+								<option value="1">Posisi Harapan dengan Skills yang Dimiliki Calon Kandidat SESUAI</option>
+								<option value="0">Posisi Harapan dengan Skills yang Dimiliki Calon Kandidat TIDAK SESUAI</option>
+							</select>
+						</div>
+						<div class="input">
+							<label for="range_Kesesuaian_Posisi_Pengalaman">Masukkan Kategori Kesesuaian Posisi Harapan dengan Pengalaman</label>
+							<select class="kotak-input" id="range_Kesesuaian_Posisi_Pengalaman" required>
+								<option value="1">Posisi Harapan dengan Posisi Riwayat Kerja yang Dimiliki Calon Kandidat SESUAI</option>
+								<option value="0">Posisi Harapan dengan Posisi Riwayat Kerja yang Dimiliki Calon Kandidat TIDAK SESUAI</option>
+							</select>
+						</div>
+						<br>
+						<!-- Tombol Prediksi -->
+						<br>
+						<button type="button" id="prediksi_submit" class="btn btn-default btn-lg">Prediksi</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<!-- Bagian Halaman untuk Hasil Prediksi -->
+				<div id="hasil_prediksi" align="center" style="font-size: 50px;">
+					<!-- Hasil Prediksi akan ditampilkan di sini-->
+				</div>
+				<br>
+				<div id="gambar_prediksi" align="center" style="margin-top: 50px;">
+					<!-- Hasil Gambar Prediksi akan ditampilkan di sini-->
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+	</div>
+	<!-- Footer -->
+	<footer class="container-fluid text-center">
+		<!-- Button to scroll to top -->
+		<button id="scrollToTopBtn" class="btn btn-default" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+		</button>
+		
+		<p> Copyright : Ahmad Ardhy Ansyah <br></p>
+	</footer>
+
+	<!-- JavaScript untuk Animasi Scroll dan Prediksi Model -->
+	<script>
+        $(document).ready(function () {
+            // Handle form submission using AJAX
+            $("#prediksi_submit").click(function (e) {
+                e.preventDefault(); // Prevent the form from being submitted in the traditional way
+
+                // Get form data
+                var formData = {
+                    "Nama": $("#input_Nama").val(),
+                    "Posisi_Harapan": $("#input_Posisi_Harapan").val(),
+                    "Usia": $("#range_Usia").val(),
+                    "Pendidikan": $("#range_Pendidikan").val(),
+                    "Lama_Pengalaman": $("#range_Lama_Pengalaman").val(),
+                    "Kesesuaian_Posisi_Skill": $("#range_Kesesuaian_Posisi_Skill").val(),
+                    "Kesesuaian_Posisi_Pengalaman": $("#range_Kesesuaian_Posisi_Pengalaman").val()
+                };
+
+                // Perform AJAX request
+                $.ajax({
+                    type: "POST",
+                    url: "/api/deteksi",
+                    data: formData,
+                    success: function (response) {
+                        // Handle the response from the server
+                        console.log(response);
+                        // Update the hasil_prediksi div or perform other actions as needed
+                        $("#hasil_prediksi").html("Hasil Prediksi: " + response.prediksi);
+                        // Add image based on the response
+                        addImage(response.prediksi);
+                    },
+                    error: function (error) {
+                        console.log("Error during AJAX request:", error);
+                    }
+                });
+            });
+
+            // Function to add image based on prediction
+			function addImage(prediction) {
+				$("#gambar_prediksi").empty();
+				if (prediction === 'Recommended Candidate') {
+					$("#gambar_prediksi").append("<img src='/static/images/centang_hijau.png' alt='Centang Hijau' width='100'>");
+				} else if (prediction === 'Not Recommended Candidate') {
+					$("#gambar_prediksi").append("<img src='/static/images/silang_merah.png' alt='Silang Merah' width='100'>");
+				}
+			}
+        });
+    </script>
+	<!-- JavaScript for scrolling to top -->
+	<script>
+		// Wait for the document to be ready
+		$(document).ready(function () {
+			// Attach click event handler to the button
+			$("#scrollToTopBtn").click(function () {
+				// Scroll to the top of the page
+				$("html, body").animate({ scrollTop: 0 }, "slow");
+			});
+		});
+	</script>
+</body>
+
+</html>
