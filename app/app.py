@@ -53,10 +53,10 @@ def apiDeteksi():
 
             # Save data to the database
             try:
-                connection = mysql.connector.connect(host='localhost',
-                                                    database='hasil_prediksi',
-                                                    user='root',
-                                                    password='')
+                connection = mysql.connector.connect(host='sql12.freesqldatabase.com',
+                                                database='sql12674037',
+                                                user='sql12674037',
+                                                password='PQLn2Bn8kt')
                 if connection.is_connected():
                     cursor = connection.cursor()
                     # Replace 'nama', 'posisi_harapan' with the actual form inputs
@@ -92,10 +92,10 @@ def apiDeteksi():
 @app.route("/view_tabel", methods=['GET'])
 def view_tabel():
     try:
-        connection = mysql.connector.connect(host='localhost',
-                                                database='hasil_prediksi',
-                                                user='root',
-                                                password='')
+        connection = mysql.connector.connect(host='sql12.freesqldatabase.com',
+                                                database='sql12674037',
+                                                user='sql12674037',
+                                                password='PQLn2Bn8kt')
         if connection.is_connected():
             cursor = connection.cursor(dictionary=True)
             cursor.execute("SELECT * FROM klasifikasi")
